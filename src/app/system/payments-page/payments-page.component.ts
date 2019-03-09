@@ -11,19 +11,20 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class PaymentsPageComponent implements OnInit {
-
+url:any;
   elements: any  ;
   test: any;
-  headElements = ['pid', 'uid', 'value', 'data','type'];
+  headElements = ['Лиц.счет', 'Дата', 'Город', 'Счетчики','Сумма'];
   response:any ;
+  post:any;
 payments:any;
   searchText: string = '';
   previous: string;
+  
 
   constructor(private http: HttpClient,private tableService: MdbTableService) {
-    this.test={pid: "2", uid: "55", value: "305", date: "2018-12-03 00:00:00", type: "electricity"};
-    
-    this.http.get('http://tvoydom24.com/api/get_payments.php?ccid=1')
+    this.url="http://www.tvoydom24.com/api/get_payments.php?ccid=1";
+    this.http.get(this.url)
     .subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;
@@ -37,8 +38,19 @@ payments:any;
    }
 
   @HostListener('input') oninput() {
+    this.url="http://www.tvoydom24.com/api/get_payments.php";
+   
+    const body = {search:this.searchText};
+   
+    this.http.post(this.url,body).subscribe((response)=>{
+      this.response=response;
+      this.elements=this.response.payments;
+      
+      
+     
+    })
     
-    this.elements=this.filterLocalDataBy(this.searchText,this.response.payments);
+    
   }
 
   ngOnInit() {
