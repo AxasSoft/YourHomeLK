@@ -34,6 +34,10 @@ payments:any;
     this.monthTo=Number(to.value.getMonth())+1;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
   console.log(this.toDate);
+  if(!this.fromDate){
+    console.log('else');
+  }
+  
   }
 
   constructor(private http: HttpClient,private tableService: MdbTableService) {
