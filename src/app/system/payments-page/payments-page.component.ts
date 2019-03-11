@@ -1,7 +1,7 @@
 import { Component,OnInit, HostListener} from '@angular/core';
 import { MdbTableService } from 'angular-bootstrap-md';
 import { HttpClient } from '@angular/common/http';
-
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 
 @Component({
@@ -11,7 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class PaymentsPageComponent implements OnInit {
-url:any;
+ model;
+  url:any;
   elements: any  ;
   test: any;
   headElements = ['Лиц.счет', 'Дата', 'Город', 'Счетчики','Сумма'];
@@ -20,7 +21,20 @@ url:any;
 payments:any;
   searchText: string = '';
   previous: string;
-  
+  fromDate:any;
+  toDate:any;
+  monthFrom: any;
+  monthTo: any;
+  getFrom(from:MatDatepickerInputEvent<Date>) {
+    this.monthFrom = Number(from.value.getMonth())+1;
+    this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
+  console.log(this.fromDate);
+  }
+  getTo(to:MatDatepickerInputEvent<Date>) {
+    this.monthTo=Number(to.value.getMonth())+1;
+    this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
+  console.log(this.toDate);
+  }
 
   constructor(private http: HttpClient,private tableService: MdbTableService) {
     this.url="http://www.tvoydom24.com/api/get_payments.php?ccid=1";

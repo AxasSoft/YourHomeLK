@@ -14,7 +14,24 @@
 
 
 
+<mat-form-field class="example-full-width">
+    <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  
+  
 
+<mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker1" (dateChange)="getTo($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker1">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  
 
 <table mdbTable>
     <thead>

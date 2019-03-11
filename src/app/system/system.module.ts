@@ -14,13 +14,29 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AreaPageComponent } from './area-page/area-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import {MatIconModule} from '@angular/material/icon'
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material';
 
+MatNativeDateModule
 @NgModule({
     imports: [
         FormsModule,
         CommonModule,
         SystemRoutingModule,
         MDBBootstrapModule.forRoot(),
+        NgbModule,
+        BrowserAnimationsModule,
+        MatButtonModule, MatCheckboxModule,MatDatepickerModule,MatIconModule,
+        MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule 
+    
     ],
     declarations: [
         SystemComponent,
@@ -34,9 +50,10 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
         MailPageComponent,
         AreaPageComponent,
         OrdersPageComponent,
+        
     ],
     exports: [],
-    providers: []
+    providers: [MatDatepickerModule,  ]
 })
 
 export class SystemModule {}
