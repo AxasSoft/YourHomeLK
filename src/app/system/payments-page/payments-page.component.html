@@ -15,7 +15,7 @@
 
 
 <mat-form-field class="example-full-width">
-    <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event)">
+    <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event,$http)">
     <mat-datepicker-toggle matSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
     </mat-datepicker-toggle>
@@ -40,12 +40,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let el of elements">
-        <th scope="row">{{el.user_account}}</th>
+      <tr  *ngFor="let el of elements" (click)="test.toggle()">
+         
+        <th scope="row" >{{el.user_account}}
+          
+          <div  mdbCollapse #test="bs-collapse">
+           <h1 aling="center">Подробная информация</h1>
+            {{el.street}}
+          </div>
+        </th>
         <td>{{el.date}}</td>
         <td>{{el.city}}</td>
         <td>{{el.type}}</td>
         <td>{{el.value}}</td>
+      
+      
       </tr>
     </tbody>
   </table>

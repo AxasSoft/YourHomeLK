@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 MatNativeDateModule
 @NgModule({
@@ -35,7 +36,8 @@ MatNativeDateModule
         MatButtonModule, MatCheckboxModule,MatDatepickerModule,MatIconModule,
         MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatExpansionModule
     
     ],
     declarations: [

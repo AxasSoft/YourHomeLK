@@ -12,6 +12,7 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 export class PaymentsPageComponent implements OnInit {
  model;
+ panelOpenState = false;
   url:any;
   elements: any  ;
   test: any;
@@ -28,14 +29,23 @@ payments:any;
   getFrom(from:MatDatepickerInputEvent<Date>) {
     this.monthFrom = Number(from.value.getMonth())+1;
     this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
-  console.log(this.fromDate);
+    
+  
   }
   getTo(to:MatDatepickerInputEvent<Date>) {
     this.monthTo=Number(to.value.getMonth())+1;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
   console.log(this.toDate);
-  if(!this.fromDate){
-    console.log('else');
+  if(this.fromDate){
+    this.url="http://www.tvoydom24.com/api/get_payments.php";
+    const body = {from:this.fromDate,to:this.toDate};
+     this.http.post(this.url,body).subscribe((response)=>{
+      this.response=response;
+      this.elements=this.response.payments;
+   console.log(this.response);
+   console.log(body);
+    
+    })
   }
   
   }
