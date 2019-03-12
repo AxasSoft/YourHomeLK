@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 MatNativeDateModule
 @NgModule({
@@ -37,7 +38,8 @@ MatNativeDateModule
         MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgMultiSelectDropDownModule.forRoot()
     
     ],
     declarations: [

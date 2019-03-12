@@ -11,7 +11,11 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 })
 
 export class PaymentsPageComponent implements OnInit {
- model;
+ 
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+ 
  panelOpenState = false;
   url:any;
   elements: any  ;
@@ -82,10 +86,42 @@ payments:any;
   }
 
   ngOnInit() {
+    this.dropdownList = [
+      { item_id: 'gas', item_text: 'Газ' },
+      { item_id: 'electricity', item_text: 'Электричество' },
+      { item_id: 'heating', item_text: 'Отопление' },
+      { item_id: 'hot_water', item_text: 'Горячая вода' },
+      { item_id: 'cold_water', item_text: 'Холодная вода' },
+    ];
     
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      enableCheckAll: false,
+     
+    };
+  }
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    //console.log(items);
+  }
+  onDeSelect(items:any){
+    console.log(items);
+  }
+
+
+
+    
+
     }
 
-    filterLocalDataBy(searchKey: any,element :any,) {
+    /*filterLocalDataBy(searchKey: any,element :any,) {
 
       if(searchKey===""){
         return element
@@ -95,11 +131,11 @@ payments:any;
           return (obj[key].toString().toLowerCase()).includes(searchKey);
         });
       });
-    }
+    }*/
 
     
     
-  }
+  
 
   
 
