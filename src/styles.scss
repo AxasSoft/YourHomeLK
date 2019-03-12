@@ -1,3 +1,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ng-multiselect-dropdown .dropdown-list[_ngcontent-c6] li[_ngcontent-c6] {
+    width: 30%;
+}
+.dropdown-btn{
+    width: 30%;
+}
+.multiselect-dropdown[_ngcontent-c5] .dropdown-btn[_ngcontent-c5] {
+    width: 30%;
+  }

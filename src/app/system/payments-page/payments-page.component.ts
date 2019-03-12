@@ -15,7 +15,17 @@ export class PaymentsPageComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
- 
+  filterLocalDataBy(searchKey: any,element :any,) {
+
+    if(searchKey===""){
+      return element
+    }
+    return element.filter((obj: Array<any>) => {
+      return Object.keys(obj).some((key: any) => {
+        return (obj[key].toString().toLowerCase()).includes(searchKey);
+      });
+    });
+  }
  panelOpenState = false;
   url:any;
   elements: any  ;
@@ -70,17 +80,18 @@ payments:any;
    }
 
   @HostListener('input') oninput() {
-    this.url="http://www.tvoydom24.com/api/get_payments.php";
+    if(this.searchText !=""){
+      this.url="http://www.tvoydom24.com/api/get_payments.php";
    
     const body = {search:this.searchText};
    
     this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;
-      
-      
      
     })
+    }
+    
     
     
   }
@@ -95,25 +106,26 @@ payments:any;
     ];
     
     this.dropdownSettings = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      enableCheckAll: false,
+      
+      
      
     };
   }
   onItemSelect(item: any) {
-    console.log(item);
+    const body = {type:item.item_id};
+     this.http.post(this.url,body).subscribe((response)=>{
+      this.response=response;
+      this.elements=this.response.payments;
+   console.log(this.response);
+   console.log(body);
+    
+    })
   }
-  onSelectAll(items: any) {
-    //console.log(items);
-  }
-  onDeSelect(items:any){
-    console.log(items);
-  }
+  
+  
 
 
 
@@ -121,17 +133,7 @@ payments:any;
 
     }
 
-    /*filterLocalDataBy(searchKey: any,element :any,) {
-
-      if(searchKey===""){
-        return element
-      }
-      return element.filter((obj: Array<any>) => {
-        return Object.keys(obj).some((key: any) => {
-          return (obj[key].toString().toLowerCase()).includes(searchKey);
-        });
-      });
-    }*/
+    
 
     
     
