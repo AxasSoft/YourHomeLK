@@ -2,14 +2,13 @@
 
 
 <div class="container-fluid">
-  <h1>Платежи</h1>
-<div class="row">
-  <div class="col">
-      <input type="text" [(ngModel)]="searchText"   >
-      <label for="search"></label>
-  </div>
-    <div class="col "><ng-multiselect-dropdown 
-    [placeholder]="'Cчетчики'"
+  <h1  class=" mt-4 text-center ">Платежи</h1>
+<div class="row mt-4 align-baseline">
+  <div class="col align-baseline">
+      <input  type="text" [(ngModel)]="searchText"   >
+    </div>
+    <ng-multiselect-dropdown class="col-md-3 align-baseline"
+    [placeholder]="'Тип счетчика'"
     [data]="dropdownList"
     [(ngModel)]="selectedItems"
     [settings]="dropdownSettings"
@@ -18,10 +17,10 @@
     (onDeSelect)="onDeSelect($event)"
     >
     </ng-multiselect-dropdown>
-    </div>
+    
   
-  <div class="col">
-  <mat-form-field>
+  
+  <mat-form-field class="col-md-3 align-baseline">
     <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event,$http)">
     <mat-datepicker-toggle matSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -29,10 +28,10 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   
-  </div>
-<div class="col">
+  
 
-  <mat-form-field >
+
+  <mat-form-field class="col-md-3" >
     <input matInput [matDatepicker]="picker1" (dateChange)="getTo($event)">
     <mat-datepicker-toggle matSuffix [for]="picker1">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -40,9 +39,38 @@
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
-</div>
+
 
 </div>
+<table mdbTable class="w-80">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let el of elements" (click)="more.toggle()">
+         
+        <th scope="row" >{{el.user_account}} </th>
+        <td>{{el.date}}</td>  
+        <td> {{el.location}}
+            <div  mdbCollapse #more="bs-collapse" class="mt-4">
+                <h2 class="align-self-center ">Подробная информация:</h2>
+                
+               </div>
+        </td>
+           
+          
+    
+        <td>{{el.type}}</td>
+        <td>{{el.value}}</td>
+      
+      
+      </tr>
+    </tbody>
+  </table>
+
+
 </div>
 
 
@@ -54,31 +82,6 @@
 
   
    
-<table mdbTable>
-    <thead>
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr  *ngFor="let el of elements" (click)="test.toggle()">
-         
-        <th scope="row" >{{el.user_account}}
-          
-          <div  mdbCollapse #test="bs-collapse">
-           <h1 aling="center">Подробная информация</h1>
-            {{el.street}}
-          </div>
-        </th>
-        <td>{{el.date}}</td>
-        <td>{{el.city}}</td>
-        <td>{{el.type}}</td>
-        <td>{{el.value}}</td>
-      
-      
-      </tr>
-    </tbody>
-  </table>
 
 
 

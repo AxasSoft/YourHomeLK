@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SystemRoutingModule } from './system-routing.module';
 import { SystemComponent } from './system.component';
+import { AythComponent } from './ayth/ayth.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { CountersPageComponent } from './counters-page/counters-page.component';
@@ -54,6 +55,7 @@ MatNativeDateModule
         MailPageComponent,
         AreaPageComponent,
         OrdersPageComponent,
+        AythComponent
         
     ],
     exports: [],

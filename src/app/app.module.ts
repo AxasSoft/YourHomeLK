@@ -7,9 +7,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SystemModule } from './system/system.module';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { LendComponent } from './lend/lend.component';
+import { LoginComponent } from './login/login.component';
+
+
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
+   
+    LendComponent,
+   
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,9 +34,32 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     SystemModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    RouterModule,
+    
   ],
-  providers: [],
+  exports: [RouterModule],
+  
   bootstrap: [AppComponent]
+
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export class AppModule { }

@@ -1,1 +1,95 @@
-<img src="http://tvoydom24.com/api/mob_api/img/counters.PNG" alt="sdf">
+
+
+
+<div class="container-fluid">
+        <h1  class=" mt-4 text-center ">Показание счетчиков</h1>
+      <div class="row mt-4 align-baseline">
+        <div class="col align-baseline">
+            <input  type="text" [(ngModel)]="searchText"   >
+          </div>
+          <ng-multiselect-dropdown class="col-md-3 align-baseline"
+          [placeholder]="'Тип счетчика'"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          [settings]="dropdownSettings"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onDeSelect($event)"
+          >
+          </ng-multiselect-dropdown>
+          
+        
+        
+        <mat-form-field class="col-md-3 align-baseline">
+          <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event,$http)">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        
+      
+      
+        <mat-form-field class="col-md-3" >
+          <input matInput [matDatepicker]="picker1" (dateChange)="getTo($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker1">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      
+      
+      
+      </div>
+      <table mdbTable class="w-80">
+          <thead>
+            <tr>
+              <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let el of elements" (click)="more.toggle()">
+               
+              <th scope="row" >{{el.user_account}}
+                
+                
+              </th>
+              <td>
+                  {{el.street}}
+                 
+                {{el.date}}</td>
+              <td>{{el.city}}
+                  <div  mdbCollapse #more="bs-collapse" class="mt-4">
+                      <h2 class="align-self-center ">Подробная информация:</h2>
+                      
+                     </div>
+      
+              </td>
+              <td>{{el.type}}</td>
+              <td>{{el.value}}</td>
+            
+            
+            </tr>
+          </tbody>
+        </table>
+      
+      
+      </div>
+      
+      
+      
+      
+        
+        
+      
+      
+        
+         
+      
+      
+      
+      
+       
+      
+       

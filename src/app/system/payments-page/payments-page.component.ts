@@ -2,6 +2,7 @@ import { Component,OnInit, HostListener} from '@angular/core';
 import { MdbTableService } from 'angular-bootstrap-md';
 import { HttpClient } from '@angular/common/http';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {Router} from "@angular/router"
 
 
 @Component({
@@ -64,12 +65,20 @@ payments:any;
   
   }
 
-  constructor(private http: HttpClient,private tableService: MdbTableService) {
-    this.url="http://www.tvoydom24.com/api/get_payments.php?ccid=1";
+  constructor(private http: HttpClient,private tableService: MdbTableService,private router:Router) {
+    //
+    
+    
+    this.url="http://www.tvoydom24.com/api/get_payments.php";
     this.http.get(this.url)
     .subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
+      if(this.response.message == "not"){
+        this.router.navigate(['/login']);
+      }
+      
+else{this.elements=this.response.payments;}
+      
       
       
      
