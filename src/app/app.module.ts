@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LendComponent } from './lend/lend.component';
 import { LoginComponent } from './login/login.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -40,7 +40,8 @@ import { LoginComponent } from './login/login.component';
   ],
   exports: [RouterModule],
   
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ CookieService ],
 
 
 })

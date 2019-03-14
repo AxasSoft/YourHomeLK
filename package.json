@@ -38,6 +38,7 @@
     "jquery": "^3.3.1",
     "ng-multiselect-dropdown": "^0.2.3",
     "ngx-bootstrap": "^3.2.0",
+    "ngx-cookie-service": "^2.1.0",
     "popper.js": "^1.14.7",
     "rxjs": "~6.3.3",
     "ts-md5": "^1.2.4",

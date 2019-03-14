@@ -2,7 +2,8 @@ import { Component,OnInit, HostListener} from '@angular/core';
 import { MdbTableService } from 'angular-bootstrap-md';
 import { HttpClient } from '@angular/common/http';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import {Router} from "@angular/router"
+import {Router} from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -41,6 +42,8 @@ payments:any;
   toDate:any;
   monthFrom: any;
   monthTo: any;
+  token:any;
+  ccid:any;
   getFrom(from:MatDatepickerInputEvent<Date>) {
     this.monthFrom = Number(from.value.getMonth())+1;
     this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
@@ -65,24 +68,34 @@ payments:any;
   
   }
 
-  constructor(private http: HttpClient,private tableService: MdbTableService,private router:Router) {
+  constructor(private http: HttpClient,private tableService: MdbTableService,private router:Router,private cookieService: CookieService) {
     //
+    this.token =this.cookieService.get('token');
     
+    this.ccid =this.cookieService.get('ccid');
     
-    this.url="http://www.tvoydom24.com/api/get_payments.php";
-    this.http.get(this.url)
-    .subscribe((response)=>{
+    if(this.token ==200){
+console.log(this.cookieService.get('ccid'));
+this.url="http://www.tvoydom24.com/api/get_payments.php";
+    const body = {token:this.token,ccid:this.ccid};
+     this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
-      if(this.response.message == "not"){
-        this.router.navigate(['/login']);
-      }
+      this.elements=this.response.payments;
+   console.log(this.response);
+   console.log(body);
+    
+    })
+}
+    
+    
       
-else{this.elements=this.response.payments;}
+      
+
       
       
       
      
-    })
+    
     
     
   
@@ -92,7 +105,7 @@ else{this.elements=this.response.payments;}
     if(this.searchText !=""){
       this.url="http://www.tvoydom24.com/api/get_payments.php";
    
-    const body = {search:this.searchText};
+    const body = {search:this.searchText,token:this.token,ccid:this.ccid};
    
     this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
@@ -124,7 +137,7 @@ else{this.elements=this.response.payments;}
     };
   }
   onItemSelect(item: any) {
-    const body = {type:item.item_id};
+    const body = {type:item.item_id,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;

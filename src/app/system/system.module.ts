@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CookieService } from 'ngx-cookie-service';
 
 MatNativeDateModule
 @NgModule({
@@ -59,7 +60,7 @@ MatNativeDateModule
         
     ],
     exports: [],
-    providers: [MatDatepickerModule,  ]
+    providers: [MatDatepickerModule, CookieService ]
 })
 
 export class SystemModule {}

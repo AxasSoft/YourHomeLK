@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'yh-login',
   templateUrl: './login.component.html',
@@ -9,11 +10,11 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 url:any;
 response:any;
-
+cookieValue :any;
   login:any;
 password:any;
 
-  constructor(private http: HttpClient, private router:Router) {
+  constructor(private http: HttpClient, private router:Router,private cookieService: CookieService) {
     
    }
     
@@ -23,11 +24,16 @@ password:any;
       
        this.http.post(this.url,body).subscribe((response)=>{
         this.response=response;
+        console.log(this.response);
         
-     console.log(this.response);
-     if(this.response.success==200){
-      this.router.navigate(['system/payments']);
+     
+     if(this.response.success=='200'){
+     this.cookieService.set( 'token', '200' );
+     
+     this.cookieService.set( 'ccid', this.response.ccid );
+     this.router.navigate(['/system/payments']);
      }
+     
     
       })
     }
