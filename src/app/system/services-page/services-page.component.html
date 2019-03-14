@@ -1,1 +1,98 @@
-<img src="http://tvoydom24.com/api/mob_api/img/services.PNG" alt="sdf">
+
+
+
+<div class="container-fluid">
+    <h1  class=" mt-4 text-center ">Услуги</h1>
+  
+    
+    
+  
+  
+    
+  
+  
+  
+  </div>
+  <table mdbTable class="w-80">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let el of elements" (click)="more.toggle()">
+           
+          <th scope="row" >{{el.name}} </th>
+          
+          <td> {{el.description}}
+
+                <div  mdbCollapse #more="bs-collapse" class="mt-4">
+                        <button type="button" class="btn btn-outline-dark" (click)="edit(el.sid)">Изменить</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="delete(el.sid)">Удалить</button>
+                       </div>
+          </td>
+                <td>{{el.email}}</td>  
+              
+         
+             
+            
+      
+         
+        
+        
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  
+    <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Добавить услугу</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Название услуги</label>
+              <input [(ngModel)]="service_name" name="service_name" type="text" class="form-control" 
+              id="exampleFormControlInput1" placeholder="Название услуги">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Категория услуги</label>
+              <select [(ngModel)]="service_category" name="service_category" class="form-control" id="exampleFormControlSelect1">
+                <option>Услуги сервиса твой дом</option>
+                <option>Вызов мастера</option>
+                <option>Доставка еды</option>
+                <option>Прочие услуги</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Описание</label>
+              <textarea [(ngModel)]="service_description" name="service_description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="send()">Добавить</button>
+            </div>
+          </ng-template>
+          
+          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Добавить услугу</button>
+  
+    
+    
+  
+  
+    
+     
+  
+  
+  
+  
+   
+  
+   
