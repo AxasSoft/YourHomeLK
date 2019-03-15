@@ -87,7 +87,9 @@ this.url="http://www.tvoydom24.com/api/get_payments.php";
     })
 }
     
-    
+    else{
+      this.router.navigate(['/login']);
+    }
       
       
 
