@@ -1,1 +1,12 @@
-<img src="http://tvoydom24.com/api/mob_api/img/statistics.PNG" alt="sdf">
+<div class="w-28" style="display: block">
+    <canvas mdbChart
+        [chartType]="chartType"
+        [datasets]="chartDatasets"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
