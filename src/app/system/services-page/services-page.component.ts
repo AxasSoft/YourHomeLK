@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @Component({
   selector: 'yh-services-page',
   templateUrl: './services-page.component.html',
@@ -31,8 +32,8 @@ export class ServicesPageComponent  {
  panelOpenState = false;
   url:any;
   elements: any  ;
-  test: any;
-  headElements = ['Название', 'Описание', 'Email'];
+  
+  headElements = ['Название', 'Категория','Описание', 'Email'];
   response:any ;
   post:any;
 payments:any;
@@ -47,7 +48,9 @@ payments:any;
   service_name:any;
   service_category:any;
   service_description:any;
-  
+  nameService:any;
+  descriptionService:any;
+  categoryService:any;
   
 
   constructor(private http: HttpClient,private tableService: MdbTableService,private router:Router,private cookieService: CookieService,
@@ -98,8 +101,11 @@ this.url='http://www.tvoydom24.com/api/add_service.php';
    })
 
   }
-  edit(sid){
-console.log(sid);
+  editService(name,description,category)
+  {
+this.nameService=name;
+this.descriptionService=description;
+this.categoryService=category;
 
   }
   private getDismissReason(reason: any): string {
