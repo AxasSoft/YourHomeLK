@@ -1,4 +1,23 @@
-<div class="w-28" style="display: block">
+
+
+
+    <div class="percent" style="display: block" >
+        <canvas mdbChart
+            [chartType]="perType"
+            [datasets]="perDatasets"
+            [labels]="perLabels"
+            [colors]="perColors"
+            [options]="perOptions"
+            [legend]="true"
+            (chartHover)="perHovered($event)"
+            (chartClick)="perClicked($event)">
+        </canvas>
+      
+
+
+</div>
+
+<div  class="quanty" style="display: block">
     <canvas mdbChart
         [chartType]="chartType"
         [datasets]="chartDatasets"
@@ -8,5 +27,21 @@
         [legend]="true"
         (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+
+
+
+
+<div class="month" >
+    <canvas mdbChart
+        [chartType]="barType"
+        [datasets]="barDatasets"
+        [labels]="barLabels"
+        [colors]="barColors"
+        [options]="barOptions"
+        [legend]="true"
+        (chartHover)="barHovered($event)"
+        (chartClick)="barClicked($event)">
     </canvas>
   </div>
