@@ -57,7 +57,7 @@ payments:any;
   console.log(this.toDate);
   if(this.fromDate){
     this.url="http://www.tvoydom24.com/api/counters_list.php";
-    const body = {from:this.fromDate,to:this.toDate};
+    const body = {from:this.fromDate,to:this.toDate,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.counters_data;
@@ -124,7 +124,8 @@ payments:any;
     };
   }
   onItemSelect(item: any) {
-    const body = {type:item.item_id};
+    this.url="http://www.tvoydom24.com/api/counters_list.php";
+    const body = {type:item.item_id,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.counters_data;
