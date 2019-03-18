@@ -51,15 +51,9 @@
           <tbody>
             <tr  *ngFor="let el of elements" (click)="more.toggle()">
                
-              <th scope="row" >{{el.user_account}}
-                
-                
-              </th>
-              <td>
-                  {{el.street}}
-                 
-                {{el.date}}</td>
-              <td>{{el.city}}
+              <th scope="row" >{{el.user_account}}</th>
+              <td>{{el.date}}</td>
+              <td>{{el.address}}
                   <div  mdbCollapse #more="bs-collapse" class="mt-4">
                       <h2 class="align-self-center ">Подробная информация:</h2>
                       

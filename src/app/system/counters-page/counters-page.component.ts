@@ -2,7 +2,7 @@ import { Component,OnInit, HostListener} from '@angular/core';
 import { MdbTableService } from 'angular-bootstrap-md';
 import { HttpClient } from '@angular/common/http';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'yh-counters-page',
   templateUrl: './counters-page.component.html',
@@ -17,6 +17,7 @@ export class CountersPageComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  
   filterLocalDataBy(searchKey: any,element :any,) {
 
     if(searchKey===""){
@@ -29,7 +30,9 @@ export class CountersPageComponent implements OnInit {
     });
   }
  panelOpenState = false;
-  url:any;
+ token:any;
+ ccid:any; 
+ url:any;
   elements: any  ;
   test: any;
   headElements = ['Лиц.счет', 'Дата', 'Город', 'Тип счетчика','Показания'];
@@ -53,11 +56,11 @@ payments:any;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
   console.log(this.toDate);
   if(this.fromDate){
-    this.url="http://www.tvoydom24.com/api/get_payments.php";
+    this.url="http://www.tvoydom24.com/api/counters_list.php";
     const body = {from:this.fromDate,to:this.toDate};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
+      this.elements=this.response.counters_data;
    console.log(this.response);
    console.log(body);
     
@@ -66,12 +69,16 @@ payments:any;
   
   }
 
-  constructor(private http: HttpClient,private tableService: MdbTableService) {
-    this.url="http://www.tvoydom24.com/api/get_payments.php?ccid=1";
+  constructor(private http: HttpClient,private tableService: 
+    MdbTableService,private cookieService: CookieService) {
+    this.url="http://www.tvoydom24.com/api/counters_list.php?ccid=3";
+    this.token =this.cookieService.get('token');
+    this.ccid =this.cookieService.get('ccid');
+    
     this.http.get(this.url)
     .subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
+      this.elements=this.response.counters_data;
       
       
      
@@ -83,14 +90,14 @@ payments:any;
 
   @HostListener('input') oninput() {
     if(this.searchText !=""){
-      this.url="http://www.tvoydom24.com/api/get_payments.php";
+      this.url="http://www.tvoydom24.com/api/counters_list.php";
    
-    const body = {search:this.searchText};
-   
+    const body = {search:this.searchText,token:this.token,ccid:this.ccid};
     this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
-     
+      this.elements=this.response.counters_data;
+     console.log(response);
+     console.log(body);
     })
     }
     
@@ -120,7 +127,7 @@ payments:any;
     const body = {type:item.item_id};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
+      this.elements=this.response.counters_data;
    console.log(this.response);
    console.log(body);
     

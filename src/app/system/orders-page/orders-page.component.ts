@@ -58,13 +58,12 @@ payments:any;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
   console.log(this.toDate);
   if(this.fromDate){
-    this.url="http://www.tvoydom24.com/api/get_payments.php";
-    const body = {from:this.fromDate,to:this.toDate};
+    this.url="http://www.tvoydom24.com/api/get_orders.php";
+    const body = {from:this.fromDate,to:this.toDate,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
-      this.elements=this.response.payments;
-   console.log(this.response);
-   console.log(body);
+      this.elements=this.response.orders;
+   
     
     })
   }
