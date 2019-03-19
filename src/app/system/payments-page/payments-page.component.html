@@ -6,14 +6,14 @@
 <div class="row d-block">
   
 
-    <div class=" form-inline md-form form-lg mr-auto  ">
+    <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
         <input type="text" [(ngModel)]="searchText" id="inputLGEx" class=" col-3 form-control form-control-lg">
         <label for="inputLGEx">Поиск</label>
       <!--
 
         
       -->
-        <ng-multiselect-dropdown class="col-3 w-25"
+        <ng-multiselect-dropdown style="padding-left:10%;width:30%;" class="  col-3 "
         [placeholder]="'Тип счетчика'"
         [data]="dropdownList"
         [(ngModel)]="selectedItems"
@@ -25,21 +25,22 @@
         </ng-multiselect-dropdown>
       
 
-        <label >test</label>
-      <mat-form-field class="col-lg-3 w-25 ">
-      
-            <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event,$http)">
+       <div style="padding-left:10%; "class="col-6"> 
+       
+        <mat-form-field style=" " class=" col-3  ">
+            <input matInput [matDatepicker]="picker" placeholder="От" (dateChange)="getFrom($event,$http)">
             <mat-datepicker-toggle matSuffix [for]="picker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+        
     
-      
-          <mat-form-field class="col-lg-3" >
-              <input matInput [matDatepicker]="picker1" (dateChange)="getTo($event)">
+          
+          
+          <mat-form-field style="margin-left:20% " class=" col-3 " >
+              <input matInput [matDatepicker]="picker1" placeholder="До" (dateChange)="getTo($event)">
               <mat-datepicker-toggle matSuffix [for]="picker1">
-                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+               
               </mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
