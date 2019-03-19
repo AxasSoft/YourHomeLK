@@ -2,7 +2,7 @@
 
 
 <div class="container-fluid">
-  <h1  class=" mt-4 text-center ">Платежи</h1>
+  <h1 style="margin-left:40%;" class=" mt-4  ">Платежи</h1>
 <div class="row d-block">
   
 
@@ -12,7 +12,9 @@
     
    -->
   <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
-        <input type="text" [(ngModel)]="searchText" id="inputLGEx" class=" col-3 form-control form-control-md" placeholder="Поиск">
+   <input type="text" [(ngModel)]="searchText" id="inputLGEx" placeholder="Поиск">
+   <i style="color:gray;" class="fa fa-search" aria-hidden="true"></i>
+    
         
         
       <!--
@@ -55,13 +57,7 @@
 
  
  
-<!--
-<div class="col-lg-4 w-25 ">
-   
-    
-  </div>
 
--->
 
   
  
@@ -81,13 +77,18 @@
     <tbody>
       <tr  *ngFor="let el of elements" (click)="more.toggle()">
          
-        <th scope="row" >{{el.user_account}} </th>
-        <td>{{el.date}}</td>  
-        <td> {{el.location}}
+        <th scope="row" >{{el.user_account}}
+          
             <div  mdbCollapse #more="bs-collapse" class="mt-4">
-                <h2 class="align-self-center ">Подробная информация:</h2>
+              
+                <p>Имя пользователя: Мозговой Владимир Александрович</p>
+                <p>Номер телефона: +79181349597</p>
                 
                </div>
+        </th>
+        <td>{{el.date}}</td>  
+        <td> {{el.location}}
+            
         </td>
            
           

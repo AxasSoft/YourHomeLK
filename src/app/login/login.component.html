@@ -1,58 +1,56 @@
-<div class="container">
+<div class="container-fluid">
 
 
-<!-- Default form login -->
-<form class="text-center border border-light p-5">
-
-  <p class="h4 mb-4">Sign in</p>
+    <div class="col" >
+      <img  style="width:10%; height:10%; margin-left: 25%; margin-top:3%;" src="http://www.tvoydom24.com/img/logo.png" />
+    
+   
+      
+    </div>  
+    
+   
+<div class="col w-50" style="margin-left:25%;">
+    <form style="margin-top:10%;"  class=" text-center border border-light p-5 col">
+    
+       
+        <p class="h4 mb-4 ">Войдите для работы</p>
+     
+  
 
   <!-- Email -->
   <input [(ngModel)]="login" name="login" type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" />
 
   <!-- Password -->
-  <input [(ngModel)]="password" name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" (ngModel)="password">
+  <input [(ngModel)]="password" name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Пароль" (ngModel)="password">
 
   <div class="d-flex justify-content-around">
     <div>
       <!-- Remember me -->
-      <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+      <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">Оставаться в системе?
     </div>
     <div>
       <!-- Forgot password -->
-      <a href="">Forgot password?</a>
+      <a href="">Забыли пароль ?</a>
     </div>
   </div>
 
   <!-- Sign in button -->
-  <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="send()">Sign in</button>
+  <button mdbBtn color="default" block="true" class="my-4" type="submit" (click)="send()">Войти</button>
 
   <!-- Register -->
-  <p>Not a member?
-    <a href="">Register</a>
-  </p>
+ 
+   <p style="margin-top:5%;"> <a href="">Зарегистрироваться</a></p> 
+
 
   <!-- Social login -->
-  <p>or sign in with:</p>
 
-  <a type="button" class="light-blue-text mx-2">
-    <!-- <i class="fab fa-facebook-f"></i> -->
-    <mdb-icon fab icon="facebook"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!-- <i class="fab fa-twitter"></i> -->
-    <mdb-icon fab icon="twitter"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!-- <i class="fab fa-linkedin-in"></i> -->
-    <mdb-icon fab icon="linkedin"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!-- <i class="fab fa-github"></i> -->
-    <mdb-icon fab icon="heart"></mdb-icon>
-  </a>
 
 </form>
-<!-- Default form login -->
+
+</div>
+
+
+
 
 
 

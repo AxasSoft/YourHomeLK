@@ -2,12 +2,26 @@
 
 
 <div class="container-fluid">
-        <h1  class=" mt-4 text-center ">Показание счетчиков</h1>
-      <div class="row mt-4 align-baseline">
-        <div class="col align-baseline">
-            <input  type="text" [(ngModel)]="searchText"   >
-          </div>
-          <ng-multiselect-dropdown class="col-md-3 align-baseline"
+    <h1 style="margin-left:33%;" class=" mt-4  ">Показание счетчиков</h1>
+  <div class="row d-block">
+    
+  
+     <!--
+  
+  
+      
+     -->
+    <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
+     <input type="text" [(ngModel)]="searchText" id="inputLGEx" placeholder="Поиск">
+     <i style="color:gray;" class="fa fa-search" aria-hidden="true"></i>
+      
+          
+          
+        <!--
+  
+          
+        -->
+          <ng-multiselect-dropdown style="padding-left:10%;width:30%;" class="  col-3 "
           [placeholder]="'Тип счетчика'"
           [data]="dropdownList"
           [(ngModel)]="selectedItems"
@@ -17,73 +31,89 @@
           (onDeSelect)="onDeSelect($event)"
           >
           </ng-multiselect-dropdown>
-          
         
-        
-        <mat-form-field class="col-md-3 align-baseline">
-          <input matInput [matDatepicker]="picker" (dateChange)="getFrom($event,$http)">
-          <mat-datepicker-toggle matSuffix [for]="picker">
-            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        
-        
-      
-      
-        <mat-form-field class="col-md-3" >
-          <input matInput [matDatepicker]="picker1" (dateChange)="getTo($event)">
-          <mat-datepicker-toggle matSuffix [for]="picker1">
-            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-      
-      
-      
-      </div>
-      <table mdbTable class="w-80">
-          <thead>
-            <tr>
-              <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr  *ngFor="let el of elements" (click)="more.toggle()">
-               
-              <th scope="row" >{{el.user_account}}</th>
-              <td>{{el.date}}</td>
-              <td>{{el.address}}
-                  <div  mdbCollapse #more="bs-collapse" class="mt-4">
-                      <h2 class="align-self-center ">Подробная информация:</h2>
-                      
-                     </div>
-      
-              </td>
-              <td>{{el.type}}</td>
-              <td>{{el.value}}</td>
-            
-            
-            </tr>
-          </tbody>
-        </table>
-      
-      
-      </div>
-      
-      
-      
-      
-        
-        
-      
-      
-        
+  
+         <div style="padding-left:10%; "class="col-6"> 
          
+          <mat-form-field class=" col-3  ">
+              <input matInput [matDatepicker]="picker" placeholder="От" (dateChange)="getFrom($event,$http)">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          
       
-      
-      
-      
-       
-      
-       
+            
+            
+            <mat-form-field style="margin-left:20% " class=" col-3 " >
+                <input matInput [matDatepicker]="picker1" placeholder="До" (dateChange)="getTo($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker1">
+                 
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        
+            </div>
+  
+   
+   
+  
+  
+    
+   
+  
+    
+  
+  
+  
+  
+  </div>
+  <table style="width:88%; margin-left:5%;" mdbTable class="table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let el of elements" (click)="more.toggle()">
+           
+            <th scope="row" >{{el.user_account}}
+
+                <div  mdbCollapse #more="bs-collapse" class="mt-4">
+              
+                    <p>Имя пользователя: Мозговой Владимир Александрович</p>
+                    <p>Номер телефона: +79181349597</p>
+                    
+                   </div>
+
+            </th>
+            <td>{{el.date}}</td>
+            <td>{{el.address}}
+                
+    
+            </td>
+            <td>{{el.type}}</td>
+            <td>{{el.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  </div>
+  
+  
+  
+  
+    
+    
+  
+  
+    
+     
+  
+  
+  
+  
+   
+  
+   

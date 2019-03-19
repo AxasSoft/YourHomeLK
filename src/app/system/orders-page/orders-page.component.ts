@@ -76,6 +76,7 @@ payments:any;
     this.token =this.cookieService.get('token');
     
     this.ccid =this.cookieService.get('ccid');
+    console.log(this.ccid);
     
 
 this.url="http://www.tvoydom24.com/api/get_orders.php?ccid=3";

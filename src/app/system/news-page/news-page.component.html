@@ -1,4 +1,4 @@
-<h1 align="center">Новости</h1>
+<h1 style="margin-top:3%; margin-bottom:3%;" align="center">Новости</h1>
 
 <ng-template #content let-modal>
         <div class="modal-header">
@@ -43,14 +43,19 @@
         </div>
       </ng-template>
 
-<table mdbTable class="w-53" >
+<table style="margin-left:6%; width:80%; border:none;"  mdbTable  >
         
         <tbody>
           <tr *ngFor="let el of elements">
              
             <th><img width="300" src="{{el.img}}"/></th>
-            <td>{{el.title}}</td>
-            <td>{{el.description}}</td>
+            <td><h4 >{{el.title}}</h4>
+            <p>{{el.description}}</p>
+            </td>
+            
+              
+           
+            
           
           </tr>
          
@@ -58,7 +63,7 @@
         </tbody>
       
     </table>
-    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Добавить новость</button>
+    <button style="margin-left:70%; margin-bottom: 2%;" class="btn btn-lg btn-outline-info" (click)="open(content)">Добавить </button>
 
 
     

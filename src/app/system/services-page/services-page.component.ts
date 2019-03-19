@@ -83,7 +83,7 @@ payments:any;
     
     this.ccid =this.cookieService.get('ccid');
     
-    
+    console.log(this.ccid);
     
     
   

@@ -2,18 +2,22 @@
 
 
 <div class="container-fluid">
-    <h1  class=" mt-4 text-center ">Услуги</h1>
+    <h1  style="margin-left:40%;" class=" mt-4  ">Услуги
+    
+    </h1>
+  
+   
+
+   
+    
+  
   
     
-    
-  
-  
-    
   
   
   
-  </div>
-  <table mdbTable class="w-80">
+ 
+  <table style=" margin-top:3%;width:88%; margin-left:5%;" mdbTable class="table table-striped">
       <thead>
         <tr>
           <th *ngFor="let head of headElements" scope="col">{{head}} </th>
@@ -27,8 +31,8 @@
           <td> {{el.description}}
 
                 <div  mdbCollapse #more="bs-collapse" class="mt-4">
-                        <button type="button" (click)="open(edit)" class="btn btn-outline-dark" (click)="editService(el.sid,el.name,el.category,el.description)">Изменить услугу</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="deleteServ(el.sid)">Удалить услугу</button>
+                        <button type="button" (click)="open(edit)" class="btn btn-outline-primary" (click)="editService(el.sid,el.name,el.category,el.description)">Изменить </button>
+                        <button type="button" class="btn btn-outline-danger" (click)="deleteServ(el.sid)">Удалить </button>
                        </div>
           </td>
                 <td>{{el.email}}</td>  
@@ -77,11 +81,15 @@
           </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="send()">Добавить</button>
+              <button type="button" class="btn btn-outline-dark" (click)="send()">Добавить услугу</button>
             </div>
           </ng-template>
           
-          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Добавить услугу</button>
+          
+         
+
+
+       
   
     
           <ng-template #edit let-modal>
@@ -119,7 +127,17 @@
               <button type="button" class="btn btn-outline-dark" (click)="editServ()">Изменить</button>
             </div>
           </ng-template>
+        
+<button style="margin-left: 80%; margin-bottom: 5%; "  class=" fixed-bottom btn btn-lg btn-outline-info" (click)="open(content)">Добавить</button>
+
+          
   
+   <!--
+<i  style="margin-left: 80%;  margin-bottom: 5%; " class=" fixed-bottom fa fa-plus"></i>
+   --> 
+  
+  
+        </div>
   
     
      
