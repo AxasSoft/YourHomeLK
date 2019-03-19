@@ -6,9 +6,15 @@
 <div class="row d-block">
   
 
-    <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
-        <input type="text" [(ngModel)]="searchText" id="inputLGEx" class=" col-3 form-control form-control-lg">
-        <label for="inputLGEx">Поиск</label>
+   <!--
+
+
+    
+   -->
+  <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
+        <input type="text" [(ngModel)]="searchText" id="inputLGEx" class=" col-3 form-control form-control-md" placeholder="Поиск">
+        
+        
       <!--
 
         
@@ -27,7 +33,7 @@
 
        <div style="padding-left:10%; "class="col-6"> 
        
-        <mat-form-field style=" " class=" col-3  ">
+        <mat-form-field class=" col-3  ">
             <input matInput [matDatepicker]="picker" placeholder="От" (dateChange)="getFrom($event,$http)">
             <mat-datepicker-toggle matSuffix [for]="picker">
             </mat-datepicker-toggle>
@@ -66,7 +72,7 @@
 
 
 </div>
-<table mdbTable class="w-80">
+<table style="width:88%; margin-left:5%;" mdbTable class="table table-striped">
     <thead>
       <tr>
         <th *ngFor="let head of headElements" scope="col">{{head}} </th>
