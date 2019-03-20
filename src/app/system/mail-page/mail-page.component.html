@@ -6,11 +6,11 @@
   <div class="row d-block">
     
   
-     <!--
+     
   
-  
+   <!-- Форма для поиска-->
       
-     -->
+     
     <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
      <input type="text" [(ngModel)]="searchText" id="inputLGEx" placeholder="Поиск">
      <i style="color:gray;" class="fa fa-search" aria-hidden="true"></i>
@@ -18,10 +18,10 @@
           
           
         <!--
-  
+   форма для типа сообщения 
           
         -->
-          <ng-multiselect-dropdown style="padding-left:10%;width:30%;" class="  col-3 "
+          <ng-multiselect-dropdown style="padding-left:10%;width:30%;" class="  col-lg-3 col-md-6 col-sm-6 "
           [placeholder]="'Тип обращения'"
           [data]="dropdownList"
           [(ngModel)]="selectedItems"
@@ -32,10 +32,10 @@
           >
           </ng-multiselect-dropdown>
         
-  
-         <div style="padding-left:10%; "class="col-6"> 
+  <!--Форма для даты -->
+         <div style="padding-left:10%; "class="col-lg-6 col-md-6 col-sm-6"> 
          
-          <mat-form-field class=" col-3  ">
+          <mat-form-field class="   ">
               <input matInput [matDatepicker]="picker" placeholder="От" (dateChange)="getFrom($event,$http)">
               <mat-datepicker-toggle matSuffix [for]="picker">
               </mat-datepicker-toggle>
@@ -45,7 +45,7 @@
       
             
             
-            <mat-form-field style="margin-left:20% " class=" col-3 " >
+            <mat-form-field style="margin-left:20% " class="  " >
                 <input matInput [matDatepicker]="picker1" placeholder="До" (dateChange)="getTo($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker1">
                  

@@ -6,20 +6,20 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './statistics-page.component.html',
   styleUrls: ['./statistics-page.component.scss']
 })
+/* Статистика */
 
 export class StatisticsPageComponent  {
- 
-  
- test:any; 
-  url:any;
-  response:any;
-  
 
-
+  //Свойства графиков
+test:any; 
+url:any;
+response:any;
+  
   public barType: string = 'bar';
 
+
   public barDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40 ,30, 50, 88, 60, 70], label: 'My First dataset' }
+    { data: [65, 59, 80, 81, 56, 55, 40 ,30, 50, 88, 60, 70], label: 'RUB' }
   ];
 
   public barLabels: Array<any> = ['Январь', 'Ферваль', 'Март', 'Апрель', 'Май', 'Июнь','Июль','Авуст','Cентябрь', 'Октябрь','Ноябрь','Декарбь',];
@@ -90,20 +90,10 @@ export class StatisticsPageComponent  {
 
 
 
-
-
-
-
-
-
-
-
-
-
   public perType: string = 'line';
 
   public perDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40,80, 81, 56, 55, 40], label: 'My First dataset' },
+    { data: [65, 59, 80, 81, 56, 55, 40,80, 81, 56, 55, 40], label: 'Человек' },
     
   ];
 
@@ -127,6 +117,14 @@ export class StatisticsPageComponent  {
 
   
   constructor(public http: HttpClient){
+    //GET Запрос Статистики 
+/*
+P.S. 
+Я  не усплел сделать статистику , у меня не получается скормить
+ данные в chartDataset приходящие из API (не успел разобраться )  
+
+
+*/
       this.url="http://www.tvoydom24.com/api/get_statistics_data.php?ccid=1";
      this.http.get(this.url).subscribe((response)=>{
       this.response=response;

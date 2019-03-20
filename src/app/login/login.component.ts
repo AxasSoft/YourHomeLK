@@ -8,7 +8,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-url:any;
+
+//Cвойства
+
+  url:any;
 response:any;
 cookieValue :any;
   login:any;
@@ -16,9 +19,16 @@ password:any;
 
   constructor(private http: HttpClient, private router:Router,private cookieService: CookieService) {
     
-   }
+   //Удаляем ранесозданные Cokkies
+    cookieService.deleteAll();
+  
+  
+  
+  }
     
-    send() {
+  //Отправляем логин и пароль  
+  
+  send() {
       const body = {login:this.login,password:this.password};
       this.url="http://www.tvoydom24.com/api/testPost.php";
       

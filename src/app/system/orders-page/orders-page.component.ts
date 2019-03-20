@@ -15,22 +15,11 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class OrdersPageComponent {
   
-
+//Параметры
 
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  filterLocalDataBy(searchKey: any,element :any,) {
-
-    if(searchKey===""){
-      return element
-    }
-    return element.filter((obj: Array<any>) => {
-      return Object.keys(obj).some((key: any) => {
-        return (obj[key].toString().toLowerCase()).includes(searchKey);
-      });
-    });
-  }
  panelOpenState = false;
   url:any;
   elements: any  ;
@@ -47,12 +36,17 @@ payments:any;
   monthTo: any;
   token:any;
   ccid:any;
+ 
+ //Возращает данные даты от
   getFrom(from:MatDatepickerInputEvent<Date>) {
     this.monthFrom = Number(from.value.getMonth())+1;
     this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
     
   
   }
+ 
+ 
+ //Возращает данные даты до и отправляет на массив на сервер
   getTo(to:MatDatepickerInputEvent<Date>) {
     this.monthTo=Number(to.value.getMonth())+1;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
@@ -72,15 +66,15 @@ payments:any;
 
   constructor(private http: HttpClient,private tableService: 
     MdbTableService,private router:Router,private cookieService: CookieService) {
-    //
+    // Получаем Cookies
     this.token =this.cookieService.get('token');
     
     this.ccid =this.cookieService.get('ccid');
-    console.log(this.ccid);
     
+    //Получаем запросом GET Заказы
 
-this.url="http://www.tvoydom24.com/api/get_orders.php?ccid=3";
-    const body = {token:this.token,ccid:this.ccid};
+this.url="http://www.tvoydom24.com/api/get_orders.php?ccid="+this.ccid;
+    
      this.http.get(this.url).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.orders;
@@ -98,18 +92,17 @@ this.url="http://www.tvoydom24.com/api/get_orders.php?ccid=3";
     
   
    }
-
+//Возращает данные поля поиска и отправляет массив с поиском на сервер
   @HostListener('input') oninput() {
     if(this.searchText !=""){
       this.url="http://www.tvoydom24.com/api/get_orders.php";
    
-    const body = {search:this.searchText,token:this.token,ccid:3};
+    const body = {search:this.searchText,token:this.token,ccid:this.ccid};
    
     this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.orders;
-      console.log(this.elements);
-      console.log(body);
+      
       
      
     })
@@ -136,14 +129,16 @@ this.url="http://www.tvoydom24.com/api/get_orders.php?ccid=3";
      
     };
   }
+
+//Отправляет даные типы заказов на сервер 
+
   onItemSelect(item: any) {
     this.url="http://www.tvoydom24.com/api/get_orders.php";
     const body = {type:item.item_id,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.orders;
-   console.log(this.response.orders);
-   console.log(body);
+   
     
     })
   }

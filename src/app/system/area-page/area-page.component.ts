@@ -13,24 +13,12 @@ import { CookieService } from 'ngx-cookie-service';
 export class AreaPageComponent  {
  
 
-
+// Свойства
 
 
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  
-  filterLocalDataBy(searchKey: any,element :any,) {
-
-    if(searchKey===""){
-      return element
-    }
-    return element.filter((obj: Array<any>) => {
-      return Object.keys(obj).some((key: any) => {
-        return (obj[key].toString().toLowerCase()).includes(searchKey);
-      });
-    });
-  }
  panelOpenState = false;
  token:any;
  ccid:any; 
@@ -47,12 +35,18 @@ payments:any;
   toDate:any;
   monthFrom: any;
   monthTo: any;
+  
+  
+  // Возращает значение даты от
   getFrom(from:MatDatepickerInputEvent<Date>) {
     this.monthFrom = Number(from.value.getMonth())+1;
     this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
     
   
   }
+  
+  //Возращает значение даты до и отправляет 2 даты для поиска подходящего промежутка 
+  
   getTo(to:MatDatepickerInputEvent<Date>) {
     this.monthTo=Number(to.value.getMonth())+1;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
@@ -73,15 +67,19 @@ payments:any;
 
   constructor(private http: HttpClient,private tableService: 
     MdbTableService,private cookieService: CookieService) {
-    this.url="http://www.tvoydom24.com/api/get_area.php?ccid=3";
+    
+    
+     
     this.token =this.cookieService.get('token');
     this.ccid =this.cookieService.get('ccid');
-    
+    this.url="http://www.tvoydom24.com/api/get_area.php?ccid="+this.ccid;
+    // GET запрос для 
     this.http.get(this.url)
     .subscribe((response)=>{
       this.response=response;
       this.elements=this.response.areaList;
       console.log(response);
+      console.log(this.url);
       
       
      

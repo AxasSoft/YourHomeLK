@@ -1,5 +1,10 @@
 <h1 style="margin-top:3%; margin-bottom:3%;" align="center">Новости</h1>
 
+
+
+
+
+<!-- Модальное окно для добавление новости -->
 <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Добавить новость</h4>
@@ -43,6 +48,60 @@
         </div>
       </ng-template>
 
+
+<!-- Модальное окно для редактирования новости -->
+      <ng-template #edit let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Изменить новость</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Название новости</label>
+          <input [(ngModel)]="titleNews" name="titleNews" type="text" class="form-control" 
+          id="exampleFormControlInput1" placeholder="Название новости">
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Описание</label>
+          <textarea [(ngModel)]="descriptionNews" name="descriptionNews" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+    
+        <div class="input-default-wrapper mt-3">
+                <label for="exampleFormControlInput1">Загрузить картинку</label>
+                <span class="input-group-text mb-3" id="input1">Upload</span>
+              
+                <input type="file" id="file-with-current" class="input-default-js">
+              
+                <label class="label-for-default-js rounded-right mb-3" for="file-with-current"><span class="span-choose-file">Choose
+                    file</span>
+              
+                  <div class="float-right span-browse">Browse</div>
+              
+                </label>
+              
+              </div>
+    
+    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="editNews()">Изменить</button>
+        </div>
+      </ng-template>
+
+
+
+
+
+
+
+
+
+<!--Таблица новостей-->
 <table style="margin-left:6%; width:80%; border:none;"  mdbTable  >
         
         <tbody>
@@ -51,6 +110,8 @@
             <th><img width="300" src="{{el.img}}"/></th>
             <td><h4 >{{el.title}}</h4>
             <p>{{el.description}}</p>
+            <button type="button" class="btn btn-outline-primary" (click)="editWindow(el.title,el.description,edit)">Изменить</button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteNews()">Удалить</button>
             </td>
             
               
@@ -63,6 +124,7 @@
         </tbody>
       
     </table>
+   <!--Добавить новость-->
     <button style="margin-left:70%; margin-bottom: 2%;" class="btn btn-lg btn-outline-info" (click)="open(content)">Добавить </button>
 
 

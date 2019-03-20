@@ -31,7 +31,7 @@
           <td> {{el.description}}
 
                 <div  mdbCollapse #more="bs-collapse" class="mt-4">
-                        <button type="button" (click)="open(edit)" class="btn btn-outline-primary" (click)="editService(el.sid,el.name,el.category,el.description)">Изменить </button>
+                        <button type="button"  class="btn btn-outline-primary" (click)="editService(el.sid,el.name,el.category,el.description,edit)">Изменить </button>
                         <button type="button" class="btn btn-outline-danger" (click)="deleteServ(el.sid)">Удалить </button>
                        </div>
           </td>
@@ -48,7 +48,7 @@
       </tbody>
     </table>
   
-  
+  <!-- Модальное окно для добавление услуги -->
   
     <ng-template #content let-modal>
             <div class="modal-header">
@@ -89,7 +89,7 @@
          
 
 
-       
+       <!-- Модальное окно для редактирование услуги -->
   
     
           <ng-template #edit let-modal>
@@ -132,9 +132,7 @@
 
           
   
-   <!--
-<i  style="margin-left: 80%;  margin-bottom: 5%; " class=" fixed-bottom fa fa-plus"></i>
-   --> 
+   
   
   
         </div>

@@ -14,25 +14,15 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./services-page.component.scss']
 })
 export class ServicesPageComponent  {
+  //Параметры
+  
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  filterLocalDataBy(searchKey: any,element :any,) {
-
-    if(searchKey===""){
-      return element
-    }
-    return element.filter((obj: Array<any>) => {
-      return Object.keys(obj).some((key: any) => {
-        return (obj[key].toString().toLowerCase()).includes(searchKey);
-      });
-    });
-  }
   closeResult: string;
  panelOpenState = false;
   url:any;
   elements: any  ;
-  
   headElements = ['Название', 'Категория','Описание', 'Email'];
   response:any ;
   post:any;
@@ -53,7 +43,11 @@ payments:any;
   categoryService:any;
   sid:any;
   edit:any;
+  
+  
+  //Получение услуг методом POST
   getServices(){
+   //Проверка пользователя на то что он авторизован
     if(this.token ==200){
       console.log(this.cookieService.get('ccid'));
       this.url="http://www.tvoydom24.com/api/services.php";
@@ -61,8 +55,7 @@ payments:any;
            this.http.post(this.url,body).subscribe((response)=>{
             this.response=response;
             this.elements=this.response.services_cc;
-         console.log(this.response);
-         console.log(body);
+         
           
           })
       }
@@ -78,17 +71,17 @@ payments:any;
 
 
       
-    //
+    // Получение Cookies
     this.token =this.cookieService.get('token');
     
     this.ccid =this.cookieService.get('ccid');
     
-    console.log(this.ccid);
+    
     
     
   
    }
-   
+   //Открыть модальное окно
    open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -97,23 +90,30 @@ payments:any;
     });
   }
 
-
+//Добавление новости
   send(){
     
 this.url='http://www.tvoydom24.com/api/add_service.php';
-    const body = {token:this.token,ccid:this.ccid,service_name:this.service_name,service_category:this.service_category,service_description:this.service_description};
+    const body = {token:this.token,ccid:this.ccid,service_name:this.service_name,
+      service_category:this.service_category,service_description:this.service_description};
     this.http.post(this.url,body).subscribe((response)=>{
      this.response=response;
      
-  console.log(this.response);
-  console.log(body);
+  
    
    })
 
   }
-  //getService
-  editService(sid,name,category,description)
+  //Получение значений услуги , которую нужно редактировать
+  editService(sid,name,category,description,edit)
   {
+
+    this.modalService.open(edit, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
     this.sid=sid;
 this.nameService=name;
 this.descriptionService=description;
@@ -121,7 +121,7 @@ this.categoryService=category;
 
   }
   
-  //edit Service
+  //Изменение услуги
   editServ(){
     this.url='http://www.tvoydom24.com/api/edit_service.php';
     const body = {sid:this.sid,token:this.token,ccid:this.ccid,
@@ -129,32 +129,34 @@ this.categoryService=category;
     this.http.post(this.url,body).subscribe((response)=>{
      this.response=response;
      if(this.response=200){
-     
+     //Если изменение услуг произошло усешно перезагружаем страницу
       window.location.reload();
       
     }
      
-  console.log(this.response);
-  console.log(body);
+  
    
    })
    
 
   }
+ //Удаление услуги
+ 
   deleteServ(sid){
     this.url='http://www.tvoydom24.com/api/delete_service.php';
     const body = {sid:sid,token:this.token,ccid:this.ccid};
     this.http.post(this.url,body).subscribe((response)=>{
      this.response=response;
      
-  console.log(this.response);
-  console.log(body);
+  
   if(this.response=200){
     this.getServices();
   }
    
    })
   }
+  
+  // Системная функция связанная с модальным окном не трогать
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -174,3 +176,22 @@ this.categoryService=category;
   }
   
 }
+/*
+
+
+Проверка валидации форма еще не была реализована
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/ 

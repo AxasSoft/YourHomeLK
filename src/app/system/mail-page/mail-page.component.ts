@@ -71,9 +71,10 @@ payments:any;
 
   constructor(private http: HttpClient,private tableService: 
     MdbTableService,private cookieService: CookieService) {
-    this.url="http://www.tvoydom24.com/api/get_mail.php?ccid=3";
+    
     this.token =this.cookieService.get('token');
     this.ccid =this.cookieService.get('ccid');
+    this.url="http://www.tvoydom24.com/api/get_mail.php?ccid="+this.ccid;
     
     this.http.get(this.url)
     .subscribe((response)=>{

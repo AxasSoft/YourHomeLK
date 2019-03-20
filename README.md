@@ -1,27 +1,125 @@
-# YourHome
+![](http://www.tvoydom24.com/img/logo.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+# Личный кабинет 
+Недостатки
+------------
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+###### 1. Не реализована статистика
+###### 2. Не реализован полный функционал управления новостями  
+###### 2. Не реализован полный функционал загрузки изображения на сервер
+------------
+## Руководство
+Аутентификация пользователей происходит через страницу /login
+## API
+API реализована на простом PHP без REST
+#### 1.Статистика
+------------
+Получение данных по статистике 
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/get_statistics_data.php?ccid=1
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+#### 2. Новости
+------------
+Получение Новостей
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/cc_news.php?ccid=1
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Добавление новостей
+**METHOD GET**  параметр ccid ключ
+**{'news_title']** заголовок новостей
+**['news_description']** описание новости
+**['url_news_img']** - место хранения изображения
+http://www.tvoydom24.com/api/add_news.php?[params]
 
-## Running unit tests
+#### 3.Показание счетчиков 
+------------
+Получение показания
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/counters_list.php?ccid=1
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Поиск по значениям 
+**METHOD POST**  описание есть в коде
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+#### 4.Платежи
+------------
+Получение платежей
+**METHOD POST**  параметр ccid ключ
+отправляемые параметры 
+**[token]** - берется из Cookies
+**[ccid]** - ключ
+http://www.tvoydom24.com/api/payments.php
 
-## Further help
+Поиск по значениям 
+**METHOD POST**  описание есть в коде
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### 5.Услуги
+------------
+ ### Получение услуг
+**METHOD POST**  параметр ccid ключ
+отправляемые параметры 
+**[token]** - берется из Cookies
+**[ccid]** - ключ
+http://www.tvoydom24.com/api/services.php
+### Добавление услуг
+
+**METHOD POST**
+**[token]** - берется из Cookies
+**[ccid]** - ключ
+**[service_name]** - имя услуги
+**[service_category]** - категория услуги
+**[service_description]** - Описание  услуги
+http://www.tvoydom24.com/api/add_service.php
+
+### Изменение услуги
+
+**METHOD POST**
+**[token]** - берется из Cookies
+**[ccid]** - ключ
+**[service_name]** - имя услуги
+**[service_category]** - категория услуги
+**[service_description]** - Описание  услуги
+http://www.tvoydom24.com/api/edit_service.php
+
+
+###Удаление услуги
+
+
+**METHOD POST**
+**[token]** - берется из Cookies
+**[ccid]** - ключ
+**[sid]** - id услуги которую надо удалить
+http://www.tvoydom24.com/api/edit_service.php
+
+#### 6.Заказы
+------------
+
+Получение заказов
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/get_orders.php?ccid=1
+
+Поиск по значениям 
+**METHOD POST**  описание есть в коде
+
+#### 7.Обращения
+------------
+
+Получение обращений
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/mail.php?ccid=1
+
+Поиск по значениям 
+**METHOD POST**  описание есть в коде
+
+#### 8.Cписок адресов
+------------
+
+Получение обращений
+**METHOD GET**  параметр ccid ключ
+http://www.tvoydom24.com/api/get_area.php?ccid=1
+
+Поиск по значениям 
+**METHOD POST**  описание есть в коде

@@ -13,21 +13,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class PaymentsPageComponent implements OnInit {
- 
+ // Свойства элементов
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  filterLocalDataBy(searchKey: any,element :any,) {
 
-    if(searchKey===""){
-      return element
-    }
-    return element.filter((obj: Array<any>) => {
-      return Object.keys(obj).some((key: any) => {
-        return (obj[key].toString().toLowerCase()).includes(searchKey);
-      });
-    });
-  }
  panelOpenState = false;
   url:any;
   elements: any  ;
@@ -44,12 +34,16 @@ payments:any;
   monthTo: any;
   token:any;
   ccid:any;
+  
+  
+  //Возращает данные от датЫ
   getFrom(from:MatDatepickerInputEvent<Date>) {
     this.monthFrom = Number(from.value.getMonth())+1;
     this.fromDate = from.value.getFullYear()+'-'+this.monthFrom+'-'+from.value.getDate();
     
   
   }
+  //Возращает данные до и отправляет массив на сервер
   getTo(to:MatDatepickerInputEvent<Date>) {
     this.monthTo=Number(to.value.getMonth())+1;
     this.toDate=to.value.getFullYear()+'-'+this.monthTo+'-'+to.value.getDate();
@@ -60,8 +54,7 @@ payments:any;
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;
-   console.log(this.response);
-   console.log(body);
+  
     
     })
   }
@@ -69,20 +62,40 @@ payments:any;
   }
 
   constructor(private http: HttpClient,private tableService: MdbTableService,private router:Router,private cookieService: CookieService) {
-    //
+    // Получаем Cookies
+    
     this.token =this.cookieService.get('token');
     
     this.ccid =this.cookieService.get('ccid');
-    
+    // Проверка на вход
     if(this.token ==200){
 console.log(this.cookieService.get('ccid'));
+
+
+
+/*
+
+Параметр this.token был создан для тестовой проверки пользователя , на то что он авторизовался или нет в системе 
+
+( еще не доработан)
+
+
+
+
+
+*/
+
+
+
+
+//Получение платежей с помощью метода POST
+
 this.url="http://www.tvoydom24.com/api/get_payments.php";
     const body = {token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;
-   console.log(this.response);
-   console.log(body);
+ 
     
     })
 }
@@ -102,7 +115,7 @@ this.url="http://www.tvoydom24.com/api/get_payments.php";
     
   
    }
-
+//Возращает текст поиска и отправляет на сервер
   @HostListener('input') oninput() {
     if(this.searchText !=""){
       this.url="http://www.tvoydom24.com/api/get_payments.php";
@@ -119,7 +132,7 @@ this.url="http://www.tvoydom24.com/api/get_payments.php";
     
     
   }
-
+//Свойства типа счетчика
   ngOnInit() {
     this.dropdownList = [
       { item_id: 'gas', item_text: 'Газ' },
@@ -138,13 +151,13 @@ this.url="http://www.tvoydom24.com/api/get_payments.php";
      
     };
   }
+  //Возращает данные тип счетчика и отравляет на сервер
   onItemSelect(item: any) {
     const body = {type:item.item_id,token:this.token,ccid:this.ccid};
      this.http.post(this.url,body).subscribe((response)=>{
       this.response=response;
       this.elements=this.response.payments;
-   console.log(this.response);
-   console.log(body);
+   
     
     })
   }
